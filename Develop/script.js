@@ -9,7 +9,7 @@ function generateTextForPassword(isLowercaseRequired, isUppercaseRequired, isNum
   var lowercaseAdded = false;
   var uppercaseAdded = false;
   var numericalAdded = false;
-  for (let i=0; i < charCount; i++) {
+  for (let i=0; i < charCount*2; i++) {
       var newCharacter = "";
 
       if (isLowercaseRequired === true && !lowercaseAdded){
@@ -42,12 +42,19 @@ function generateTextForPassword(isLowercaseRequired, isUppercaseRequired, isNum
         newCharacter = specialCharacters[Math.floor(Math.random()*specialCharacters.length)];
         passwordText = passwordText + newCharacter;
       }
-      if (lowercaseAdded && uppercaseAdded && numericalAdded) {
+      if (lowercaseAdded && isLowercaseRequired)
+      {
         lowercaseAdded = false;
+      }
+      if (uppercaseAdded && isUppercaseRequired)
+      {
         uppercaseAdded = false;
+      }
+      if (numericalAdded && isNumericalRequired)
+      {
         numericalAdded = false;
       }
-  };
+  }
 
   return passwordText;
 
