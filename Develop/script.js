@@ -6,55 +6,6 @@ function generateTextForPassword(isLowercaseRequired, isUppercaseRequired, isNum
   var specialCharacters   = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "_", "=", "+"];
 
   var passwordText = "";
-  var lowercaseAdded = false;
-  var uppercaseAdded = false;
-  var numericalAdded = false;
-  for (let i=0; i < charCount*2; i++) {
-      var newCharacter = "";
-
-      if (isLowercaseRequired === true && !lowercaseAdded){
-
-        newCharacter = lowercaseCharacters[Math.floor(Math.random()*lowercaseCharacters.length)];
-        lowercaseAdded = true;
-
-        passwordText = passwordText + newCharacter;
-        continue;
-      }
-      if (isUppercaseRequired === true && !uppercaseAdded){
-
-        newCharacter = uppercaseCharacters[Math.floor(Math.random()*uppercaseCharacters.length)];
-        uppercaseAdded = true;
-
-        passwordText = passwordText + newCharacter;
-        continue;
-      }
-      if (isNumericalRequired === true && !numericalAdded){
-
-        newCharacter = numericalCharacters[Math.floor(Math.random()*numericalCharacters.length)];
-        numericalAdded = true;
-
-        passwordText = passwordText + newCharacter;
-        console.log("added number " + newCharacter);
-        continue;
-      }
-      if (isSpecialRequired === true){
-
-        newCharacter = specialCharacters[Math.floor(Math.random()*specialCharacters.length)];
-        passwordText = passwordText + newCharacter;
-      }
-      if (lowercaseAdded && isLowercaseRequired)
-      {
-        lowercaseAdded = false;
-      }
-      if (uppercaseAdded && isUppercaseRequired)
-      {
-        uppercaseAdded = false;
-      }
-      if (numericalAdded && isNumericalRequired)
-      {
-        numericalAdded = false;
-      }
-  }
 
   return passwordText;
 
