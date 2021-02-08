@@ -2,38 +2,54 @@
 function generateTextForPassword(isLowercaseRequired, isUppercaseRequired, isNumericalRequired, isSpecialRequired, charCount) {
   var lowercaseCharacters = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
   var uppercaseCharacters = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
-  var numericalCharacters = ["0","1","2","3","4","5","6","7","8","9","10"];
+  var numericalCharacters = ["0","1","2","3","4","5","6","7","8","9"];
   var specialCharacters   = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "_", "=", "+"];
 
   var passwordText = "";
-  for (i=0; i < charCount; i++) {
-      var newCharacter = "A";
+  var lowercaseAdded = false;
+  var uppercaseAdded = false;
+  var numericalAdded = false;
+  for (let i=0; i < charCount; i++) {
+      var newCharacter = "";
 
-      if (isLowercaseRequired === true){
+      if (isLowercaseRequired === true && !lowercaseAdded){
 
-        var randomLowercaseCharacter = lowercaseCharacters[Math.floor(Math.random()*lowercaseCharacters.length)];
+        newCharacter = lowercaseCharacters[Math.floor(Math.random()*lowercaseCharacters.length)];
+        lowercaseAdded = true;
+
+        passwordText = passwordText + newCharacter;
         continue;
       }
-      if (isUppercaseRequired === true){
+      if (isUppercaseRequired === true && !uppercaseAdded){
 
-        var randomUppercaseCharacter = uppercaseCharacters[Math.floor(Math.random()*uppercaseCharacters.length)];
+        newCharacter = uppercaseCharacters[Math.floor(Math.random()*uppercaseCharacters.length)];
+        uppercaseAdded = true;
 
+        passwordText = passwordText + newCharacter;
+        continue;
       }
-      if (isNumericalRequired === true){
+      if (isNumericalRequired === true && !numericalAdded){
 
-        var randomNumericalCharacter = numericalCharacters[Math.floor(Math.random()*numericalCharacters.length)];
+        newCharacter = numericalCharacters[Math.floor(Math.random()*numericalCharacters.length)];
+        numericalAdded = true;
 
+        passwordText = passwordText + newCharacter;
+        console.log("added number " + newCharacter);
+        continue;
       }
       if (isSpecialRequired === true){
 
-        var randomSpecialCharacter = specialCharacters[Math.floor(Math.random()*specialCharacters.length)];
-
+        newCharacter = specialCharacters[Math.floor(Math.random()*specialCharacters.length)];
+        passwordText = passwordText + newCharacter;
       }
-      
-      passwordText = passwordText + newCharacter;
-  }
+      if (lowercaseAdded && uppercaseAdded && numericalAdded) {
+        lowercaseAdded = false;
+        uppercaseAdded = false;
+        numericalAdded = false;
+      }
+  };
 
-
+  return passwordText;
 
 
 }
@@ -62,7 +78,7 @@ function generatePassword() {
     return;
   }
   // input should be validated (at least one true) and at least one character type should be selected
-  var passwordText = generateTextForPassword(isLowercaseRequired, isUppercaseRequired, isNumericalRequired, isSpecialRequired, charCount);
+  return generateTextForPassword(isLowercaseRequired, isUppercaseRequired, isNumericalRequired, isSpecialRequired, charCount);
   
 
 }
