@@ -1,26 +1,57 @@
 // Assignment code here
 function generateTextForPassword(isLowercaseRequired, isUppercaseRequired, isNumericalRequired, isSpecialRequired, charCount) {
-  var lowercaseCharacters = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
-  var uppercaseCharacters = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
-  var numericalCharacters = ["0","1","2","3","4","5","6","7","8","9"];
-  var specialCharacters   = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "_", "=", "+"];
+  var lowercaseCharacters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+  var uppercaseCharacters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+  var numericalCharacters = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+  var specialCharacters = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "_", "=", "+"];
 
   var passwordText = "";
 
-  return passwordText;
+  
 
+  
+
+  var options = [];
+
+  
+
+  console.log(options);
+
+  if (isLowercaseRequired) {
+    options = options.concat(lowercaseCharacters);
+    console.log("Lowercase",options);
+  }
+  if (isUppercaseRequired) {
+    options = options.concat(uppercaseCharacters);
+    console.log("Uppercase",options);
+  }
+  if (isNumericalRequired) {
+    options = options.concat(numericalCharacters);
+    console.log("Numerical",options);
+  }
+  if (isSpecialRequired) {
+    options = options.concat(specialCharacters);
+    console.log("Special",options);
+  }
+
+  for (let i = 0; i < charCount; i++) {
+
+    let randomChars = options[Math.floor(Math.random() * options.length)];
+    passwordText += randomChars;
+
+  }
+
+
+  return passwordText;
 
 }
 
 function generatePassword() {
   // prompt asking how many characters 8-128, confirm valid entry/validate input.
-  var charCount=Number(prompt("How many characters? Please enter between 8-128."));
+  var charCount = Number(prompt("How many characters? Please enter between 8-128."));
   
-  if (charCount >= 8 && charCount <= 128){
-   
-  
-   
 
+  if (charCount >= 8 && charCount <= 128) {
     // prompt asking if they want lower case y/n
     var isLowercaseRequired = confirm("Include lower case characters?");
     // user answered yes/no, move onto the next prompt while saving user selection?
@@ -35,9 +66,17 @@ function generatePassword() {
     confirm("Please enter a valid character range between 8-128.");
     return;
   }
+
+  var charSelect = (isLowercaseRequired === true || isUppercaseRequired === true || isNumericalRequired === true || isSpecialRequired === true);
+  while (charSelect = false) {
+
+    charSelect = prompt("You must select at least one character type.");
+
+  }
+  
   // input should be validated (at least one true) and at least one character type should be selected
   return generateTextForPassword(isLowercaseRequired, isUppercaseRequired, isNumericalRequired, isSpecialRequired, charCount);
-  
+
 
 }
 
