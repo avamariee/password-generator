@@ -3,6 +3,8 @@
 
 <p>This is a password generator that I've ceated using javascript.</p>
 
+https://avamariee.github.io/password-generator/
+
 > You can choose from a range between 8 and 128 total characters.
 >
 > You can select from 4 character types: lowercase letters, uppercase letters, numbers, and special characters.
