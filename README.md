@@ -13,5 +13,5 @@
 >
 > At this point you can then press "generate password" again, select valid options, and it will override the "undefined" and print your password.
 
-![Screenshot of deployed application](screenshot.jpg)
+![Screenshot of deployed application](screenshot.JPG)
 
