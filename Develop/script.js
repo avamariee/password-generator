@@ -5,33 +5,32 @@ function generateTextForPassword(isLowercaseRequired, isUppercaseRequired, isNum
   var numericalCharacters = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
   var specialCharacters = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "_", "=", "+"];
 
+  // empty string for password text
   var passwordText = "";
 
-  
 
-  
 
+
+  // empty array for character options
   var options = [];
 
-  
-
-  console.log(options);
+  // check user input for each character selection
 
   if (isLowercaseRequired) {
     options = options.concat(lowercaseCharacters);
-    console.log("Lowercase",options);
+
   }
   if (isUppercaseRequired) {
     options = options.concat(uppercaseCharacters);
-    console.log("Uppercase",options);
+
   }
   if (isNumericalRequired) {
     options = options.concat(numericalCharacters);
-    console.log("Numerical",options);
+
   }
   if (isSpecialRequired) {
     options = options.concat(specialCharacters);
-    console.log("Special",options);
+
   }
 
   for (let i = 0; i < charCount; i++) {
@@ -41,7 +40,6 @@ function generateTextForPassword(isLowercaseRequired, isUppercaseRequired, isNum
 
   }
 
-
   return passwordText;
 
 }
@@ -49,7 +47,6 @@ function generateTextForPassword(isLowercaseRequired, isUppercaseRequired, isNum
 function generatePassword() {
   // prompt asking how many characters 8-128, confirm valid entry/validate input.
   var charCount = Number(prompt("How many characters? Please enter between 8-128."));
-  
 
   if (charCount >= 8 && charCount <= 128) {
     // prompt asking if they want lower case y/n
@@ -63,20 +60,15 @@ function generatePassword() {
     var isSpecialRequired = confirm("Include special characters?");
     // take user input and print onto passwordText function ? 
   } else {
-    confirm("Please enter a valid character range between 8-128.");
-    return;
+    alert("Please enter a valid character range between 8-128.");
   }
-
-  var charSelect = (isLowercaseRequired === true || isUppercaseRequired === true || isNumericalRequired === true || isSpecialRequired === true);
-  while (charSelect = false) {
-
-    charSelect = prompt("You must select at least one character type.");
-
-  }
-  
   // input should be validated (at least one true) and at least one character type should be selected
-  return generateTextForPassword(isLowercaseRequired, isUppercaseRequired, isNumericalRequired, isSpecialRequired, charCount);
-
+  if (isLowercaseRequired === true || isUppercaseRequired === true || isNumericalRequired === true || isSpecialRequired === true) {
+    return generateTextForPassword(isLowercaseRequired, isUppercaseRequired, isNumericalRequired, isSpecialRequired, charCount);
+  } else {
+    // if no character types are selected, do not run generateTextForPassword
+    alert("You must select at least one character type.");
+  }
 
 }
 
